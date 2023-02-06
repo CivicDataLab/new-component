@@ -117,8 +117,12 @@ mkDirPromise(componentDir)
     logItemCompletion('Component built and saved to disk.');
     return template;
   })
-  // Test file created
+  // Create Test File
   .then(() => readFilePromiseRelative(testTemplatePath))
+  .then((testTemplate) =>
+  // Replace our placeholders with real data (so far, just the component name)
+  testTemplate.replace(/COMPONENT_NAME/g, componentName)
+  )
   .then((testTemplate) =>
     writeFilePromise(testPath, prettify(testTemplate))
   )
@@ -126,8 +130,12 @@ mkDirPromise(componentDir)
     logItemCompletion('Test file built and saved to disk.');
     return testTemplate;
   })
-  // Storybook file created
+  // Create Storybook file
   .then(() => readFilePromiseRelative(storyTemplatePath))
+  .then((storyTemplate) =>
+  // Replace our placeholders with real data (so far, just the component name)
+  storyTemplate.replace(/COMPONENT_NAME/g, componentName)
+  )
   .then((storyTemplate) =>
     writeFilePromise(storyPath, storyTemplate)
   )
