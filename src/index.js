@@ -107,7 +107,7 @@ mkDirPromise(componentDir)
   .then(() => fileCreation(componentName, prettify, testTemplatePath, testPath))
   .then(() => logItemCompletion(`Test File built and saved to disk.`))
   // Create Storybook file
-  .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath))
+  .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath, 'story'))
   .then(() => logItemCompletion(`Story built and saved to disk.`))
 
   .then((template) =>

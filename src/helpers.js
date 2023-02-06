@@ -139,7 +139,7 @@ module.exports.logError = (error) => {
   console.info('\n');
 };
 
-module.exports.fileCreation = (componentName, prettify, templatePath, filePath) => {
+module.exports.fileCreation = (componentName, prettify, templatePath, filePath, type = null) => {
   readFilePromiseRelative(templatePath)
   .then((template) =>
   // Replace our placeholders with real data (so far, just the component name)
@@ -147,6 +147,6 @@ module.exports.fileCreation = (componentName, prettify, templatePath, filePath) 
 )
 .then((template) =>
   // Format it using prettier, to ensure style consistency, and write to file. Note: Prettifier does not work with Storybook file
-  writeFilePromise(filePath, type === 'Story' ? template : prettify(template)) 
+  writeFilePromise(filePath, type === 'story' ? template : prettify(template)) 
 )
 };
