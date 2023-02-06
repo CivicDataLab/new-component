@@ -61,7 +61,7 @@ const storyTemplatePath = `./templates/storybook.tsx`;
 // Get all of our file paths worked out, for the user's project.
 const componentDir = `${program.dir}/${componentName}`;
 const filePath = `${componentDir}/${componentName}.${program.extension}`;
-const testpath = `${componentDir}/${componentName}.test.${program.extension}`;
+const testPath = `${componentDir}/${componentName}.test.${program.extension}`;
 const storyPath = `${componentDir}/${componentName}.stories.${program.extension}`;
 const indexPath = `${componentDir}/index.${program.extension}`;
 
@@ -120,7 +120,7 @@ mkDirPromise(componentDir)
   // Test file created
   .then(() => readFilePromiseRelative(testTemplatePath))
   .then((testTemplate) =>
-    writeFilePromise(testpath, prettify(testTemplate))
+    writeFilePromise(testPath, prettify(testTemplate))
   )
   .then((testTemplate) => {
     logItemCompletion('Test file built and saved to disk.');
@@ -129,7 +129,7 @@ mkDirPromise(componentDir)
   // Storybook file created
   .then(() => readFilePromiseRelative(storyTemplatePath))
   .then((storyTemplate) =>
-    writeFilePromise(storypath, prettify(storyTemplate))
+    writeFilePromise(storyPath, prettify(storyTemplate))
   )
   .then((storyTemplate) => {
     logItemCompletion('Storybook file built and saved to disk.');
