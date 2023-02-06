@@ -55,10 +55,14 @@ const [componentName] = program.args;
 
 // Find the path to the selected template file.
 const templatePath = `./templates/${program.type}.tsx`;
+const testTemplatePath = `./templates/test.tsx`;
+const storyTemplatePath = `./templates/storybook.tsx`;
 
 // Get all of our file paths worked out, for the user's project.
 const componentDir = `${program.dir}/${componentName}`;
 const filePath = `${componentDir}/${componentName}.${program.extension}`;
+const testpath = `${componentDir}/${componentName}.test.${program.extension}`;
+const storyPath = `${componentDir}/${componentName}.stories.${program.extension}`;
 const indexPath = `${componentDir}/index.${program.extension}`;
 
 // Our index template is super straightforward, so we'll just inline it for now.
@@ -112,6 +116,24 @@ mkDirPromise(componentDir)
   .then((template) => {
     logItemCompletion('Component built and saved to disk.');
     return template;
+  })
+  // Test file created
+  .then(() => readFilePromiseRelative(testTemplatePath))
+  .then((testTemplate) =>
+    writeFilePromise(testpath, prettify(testTemplate))
+  )
+  .then((testTemplate) => {
+    logItemCompletion('Test file built and saved to disk.');
+    return testTemplate;
+  })
+  // Storybook file created
+  .then(() => readFilePromiseRelative(storyTemplatePath))
+  .then((storyTemplate) =>
+    writeFilePromise(storypath, prettify(storyTemplate))
+  )
+  .then((storyTemplate) => {
+    logItemCompletion('Storybook file built and saved to disk.');
+    return storyTemplate;
   })
   .then((template) =>
     // We also need the `index.js` file, which allows easy importing.
