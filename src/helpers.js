@@ -15,6 +15,9 @@ const prettier = require('prettier');
 const chalk = require('chalk');
 
 const { requireOptional, readFilePromiseRelative, writeFilePromise } = require('./utils');
+
+const { version } = require('../package.json');
+const config = getConfig();
 const prettify = buildPrettifier(config.prettierConfig);
 
 // Get the configuration for this component.
