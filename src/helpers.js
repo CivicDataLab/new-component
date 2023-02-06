@@ -16,9 +16,7 @@ const chalk = require('chalk');
 
 const { requireOptional, readFilePromiseRelative, writeFilePromise } = require('./utils');
 
-const { version } = require('../package.json');
-const config = getConfig();
-const prettify = buildPrettifier(config.prettierConfig);
+
 
 // Get the configuration for this component.
 // Overrides are as follows:
@@ -120,6 +118,9 @@ module.exports.logIntro = ({ name, dir, type }) => {
 
   console.info('\n');
 };
+
+const config = getConfig();
+const prettify = buildPrettifier(config.prettierConfig);
 
 module.exports.fileCreation = (componentName, templatePath, filePath, type) => {
   readFilePromiseRelative(templatePath)
