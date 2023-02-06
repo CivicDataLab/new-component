@@ -101,11 +101,15 @@ if (fs.existsSync(fullPathToComponentDir)) {
 mkDirPromise(componentDir)
   .then(() => logItemCompletion('Directory created.'))
   // Create Main Component
-  .then(() => fileCreation(componentName, prettify, templatePath, filePath, 'Component'))
+  .then(() => fileCreation(componentName, prettify, templatePath, filePath))
+  .then(() => logItemCompletion(`Component built and saved to disk.`))
   // Create Test File
-  .then(() => fileCreation(componentName, prettify, testTemplatePath, testPath, 'Test File'))
+  .then(() => fileCreation(componentName, prettify, testTemplatePath, testPath))
+  .then(() => logItemCompletion(`Test File built and saved to disk.`))
   // Create Storybook file
-  .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath, 'Story'))
+  .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath))
+  .then(() => logItemCompletion(`Story built and saved to disk.`))
+
   .then((template) =>
     // We also need the `index.js` file, which allows easy importing.
     writeFilePromise(indexPath, prettify(indexTemplate))
