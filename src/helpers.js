@@ -15,6 +15,7 @@ const prettier = require('prettier');
 const chalk = require('chalk');
 
 const { requireOptional, readFilePromiseRelative, writeFilePromise } = require('./utils');
+const prettify = buildPrettifier(config.prettierConfig);
 
 // Get the configuration for this component.
 // Overrides are as follows:
