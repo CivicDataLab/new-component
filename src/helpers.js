@@ -119,10 +119,7 @@ module.exports.logIntro = ({ name, dir, type }) => {
   console.info('\n');
 };
 
-const config = getConfig();
-const prettify = buildPrettifier(config.prettierConfig);
-
-module.exports.fileCreation = (componentName, templatePath, filePath, type) => {
+module.exports.fileCreation = (componentName, prettify, templatePath, filePath, type) => {
   readFilePromiseRelative(templatePath)
   .then((template) =>
   // Replace our placeholders with real data (so far, just the component name)
