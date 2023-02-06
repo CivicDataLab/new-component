@@ -147,6 +147,6 @@ module.exports.fileCreation = (componentName, prettify, templatePath, filePath, 
 )
 .then((template) =>
   // Format it using prettier, to ensure style consistency, and write to file. Note: Prettifier does not work with Storybook file
-  writeFilePromise(filePath, type === skipPretty ? template : prettify(template)) 
+  writeFilePromise(filePath, skipPretty ? template : prettify(template)) 
 )
 };
