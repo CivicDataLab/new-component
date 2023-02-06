@@ -54,7 +54,7 @@ program
 const [componentName] = program.args;
 
 // Find the path to the selected template file.
-const templatePath = `./templates/${program.type}.js`;
+const templatePath = `./templates/${program.type}.tsx`;
 
 // Get all of our file paths worked out, for the user's project.
 const componentDir = `${program.dir}/${componentName}`;
@@ -63,8 +63,7 @@ const indexPath = `${componentDir}/index.${program.extension}`;
 
 // Our index template is super straightforward, so we'll just inline it for now.
 const indexTemplate = prettify(`\
-export * from './${componentName}';
-export { default } from './${componentName}';
+export { ${componentName} } from './${componentName}';
 `);
 
 logIntro({ name: componentName, dir: componentDir, type: program.type });
