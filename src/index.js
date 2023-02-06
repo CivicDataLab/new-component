@@ -11,11 +11,10 @@ const {
   logItemCompletion,
   logConclusion,
   logError,
+  fileCreation
 } = require('./helpers');
 const {
-  requireOptional,
   mkDirPromise,
-  readFilePromiseRelative,
   writeFilePromise,
 } = require('./utils');
 
@@ -100,49 +99,13 @@ if (fs.existsSync(fullPathToComponentDir)) {
 
 // Start by creating the directory that our component lives in.
 mkDirPromise(componentDir)
-  .then(() => readFilePromiseRelative(templatePath))
-  .then((template) => {
-    logItemCompletion('Directory created.');
-    return template;
-  })
-  .then((template) =>
-    // Replace our placeholders with real data (so far, just the component name)
-    template.replace(/COMPONENT_NAME/g, componentName)
-  )
-  .then((template) =>
-    // Format it using prettier, to ensure style consistency, and write to file.
-    writeFilePromise(filePath, prettify(template))
-  )
-  .then((template) => {
-    logItemCompletion('Component built and saved to disk.');
-    return template;
-  })
+  .then(() => logItemCompletion('Directory created.'))
+  // Create Main Component
+  .then(() => fileCreation(componentName, templatePath, filePath, 'Component'))
   // Create Test File
-  .then(() => readFilePromiseRelative(testTemplatePath))
-  .then((testTemplate) =>
-  // Replace our placeholders with real data (so far, just the component name)
-  testTemplate.replace(/COMPONENT_NAME/g, componentName)
-  )
-  .then((testTemplate) =>
-    writeFilePromise(testPath, prettify(testTemplate))
-  )
-  .then((testTemplate) => {
-    logItemCompletion('Test file built and saved to disk.');
-    return testTemplate;
-  })
+  .then(() => fileCreation(componentName, testTemplatePath, testPath, 'Test File'))
   // Create Storybook file
-  .then(() => readFilePromiseRelative(storyTemplatePath))
-  .then((storyTemplate) =>
-  // Replace our placeholders with real data (so far, just the component name)
-  storyTemplate.replace(/COMPONENT_NAME/g, componentName)
-  )
-  .then((storyTemplate) =>
-    writeFilePromise(storyPath, storyTemplate)
-  )
-  .then((storyTemplate) => {
-    logItemCompletion('Storybook file built and saved to disk.');
-    return storyTemplate;
-  })
+  .then(() => fileCreation(componentName, storyTemplatePath, storyPath, 'Story'))
   .then((template) =>
     // We also need the `index.js` file, which allows easy importing.
     writeFilePromise(indexPath, prettify(indexTemplate))

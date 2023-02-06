@@ -14,7 +14,7 @@ const path = require('path');
 const prettier = require('prettier');
 const chalk = require('chalk');
 
-const { requireOptional } = require('./utils');
+const { requireOptional, readFilePromiseRelative, writeFilePromise } = require('./utils');
 
 // Get the configuration for this component.
 // Overrides are as follows:
@@ -115,6 +115,22 @@ module.exports.logIntro = ({ name, dir, type }) => {
   );
 
   console.info('\n');
+};
+
+module.exports.fileCreation = (componentName, templatePath, filePath, type) => {
+  readFilePromiseRelative(templatePath)
+  .then((template) =>
+  // Replace our placeholders with real data (so far, just the component name)
+  template.replace(/COMPONENT_NAME/g, componentName)
+)
+.then((template) =>
+  // Format it using prettier, to ensure style consistency, and write to file. Note: Prettifier does not work with Storybook file
+  writeFilePromise(filePath, type === 'Story' ? template : prettify(template)) 
+)
+.then((template) => {
+  logItemCompletion(`${type} built and saved to disk.`);
+  return template;
+})
 };
 
 module.exports.logItemCompletion = (successText) => {
