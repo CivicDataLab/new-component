@@ -129,7 +129,7 @@ mkDirPromise(componentDir)
   // Storybook file created
   .then(() => readFilePromiseRelative(storyTemplatePath))
   .then((storyTemplate) =>
-    writeFilePromise(storyPath, prettify(storyTemplate))
+    writeFilePromise(storyPath, storyTemplate)
   )
   .then((storyTemplate) => {
     logItemCompletion('Storybook file built and saved to disk.');
