@@ -54,12 +54,14 @@ const [componentName] = program.args;
 
 // Find the path to the selected template file.
 const templatePath = `./templates/${program.type}.tsx`;
+const styleTemplatePath = `./templates/styling.scss`;
 const testTemplatePath = `./templates/test.tsx`;
 const storyTemplatePath = `./templates/storybook.tsx`;
 
 // Get all of our file paths worked out, for the user's project.
 const componentDir = `${program.dir}/${componentName}`;
 const filePath = `${componentDir}/${componentName}.${program.extension}`;
+const stylePath = `${componentDir}/${componentName}.module.scss`;
 const testPath = `${componentDir}/${componentName}.test.${program.extension}`;
 const storyPath = `${componentDir}/${componentName}.stories.${program.extension}`;
 const indexPath = `${componentDir}/index.${program.extension}`;
@@ -103,9 +105,15 @@ mkDirPromise(componentDir)
   // Create Main Component
   .then(() => fileCreation(componentName, prettify, templatePath, filePath))
   .then(() => logItemCompletion(`Component built and saved to disk.`))
+
+  // Create Style Module Component
+  .then(() => fileCreation(componentName, prettify, styleTemplatePath, stylePath))
+  .then(() => logItemCompletion(`Style File built and saved to disk.`))
+
   // Create Test File
   .then(() => fileCreation(componentName, prettify, testTemplatePath, testPath))
   .then(() => logItemCompletion(`Test File built and saved to disk.`))
+
   // Create Storybook file
   .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath, 'story'))
   .then(() => logItemCompletion(`Story built and saved to disk.`))
