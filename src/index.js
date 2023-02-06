@@ -107,7 +107,7 @@ mkDirPromise(componentDir)
   .then(() => logItemCompletion(`Component built and saved to disk.`))
 
   // Create Style Module Component
-  .then(() => fileCreation(componentName, prettify, styleTemplatePath, stylePath, skipPretty))
+  .then(() => fileCreation(componentName, prettify, styleTemplatePath, stylePath, true))
   .then(() => logItemCompletion(`Style File built and saved to disk.`))
 
   // Create Test File
@@ -115,7 +115,7 @@ mkDirPromise(componentDir)
   .then(() => logItemCompletion(`Test File built and saved to disk.`))
 
   // Create Storybook file
-  .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath, skipPretty))
+  .then(() => fileCreation(componentName, prettify, storyTemplatePath, storyPath, true))
   .then(() => logItemCompletion(`Story built and saved to disk.`))
 
   .then((template) =>
