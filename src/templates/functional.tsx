@@ -9,7 +9,7 @@ type Props = {
 const COMPONENT_NAME = React.forwardRef((props: Props, ref: any) => {
   const themeClass = cx(styles.base, {});
 
-  return <div className={`opub-${COMPONENT_NAME} ${themeClass}`} ref={ref} {...props} />;
+  return <div className={`opub-COMPONENT_NAME ${themeClass}`} ref={ref} {...props} />;
 });
 
 export { COMPONENT_NAME };
