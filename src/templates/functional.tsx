@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './IconButton.module.scss';
+import styles from './COMPONENT_NAME.module.scss';
 import cx from 'classnames';
 
 type Props = {
