@@ -1,9 +1,7 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
+import { Meta } from '@storybook/react';
 import { COMPONENT_NAME } from './COMPONENT_NAME';
 
 export default {
-  title: 'Components/COMPONENT_NAME',
   component: COMPONENT_NAME,
 
   argTypes: {
@@ -12,10 +10,10 @@ export default {
       description: 'description text',
     },
   },
-} as ComponentMeta<typeof COMPONENT_NAME>;
+} as Meta<typeof COMPONENT_NAME>;
 
-const Template: ComponentStory<typeof COMPONENT_NAME> = (props) => <COMPONENT_NAME {...props} />;
-export const Primary = Template.bind({});
-Primary.args = {
-  children: 'COMPONENT_NAME',
+export const Primary = {
+  args: {
+    label: 'COMPONENT_NAME',
+  },
 };
