@@ -11,11 +11,14 @@ const {
   logItemCompletion,
   logConclusion,
   logError,
-  fileCreation
+  fileCreation,
+  logWarn,
 } = require('./helpers');
+
 const {
   mkDirPromise,
   writeFilePromise,
+  appendFilePromise,
 } = require('./utils');
 
 // Load our package.json, so that we can pass the version onto `commander`.
@@ -90,6 +93,14 @@ if (!fs.existsSync(fullPathToParentDir)) {
   process.exit(0);
 }
 
+// Check to see if the parent directory has an index file
+const parentIndexPath = `${fullPathToParentDir}/index.ts`;
+const hasParentIndex = fs.existsSync(path.resolve(parentIndexPath));
+if (!hasParentIndex) {
+  logWarn(`Looks like this component's parent directory does not have an index file.\nYou might want to add one.`)
+  process.exit(0);
+}
+
 // Check to see if this component has already been created
 const fullPathToComponentDir = path.resolve(componentDir);
 if (fs.existsSync(fullPathToComponentDir)) {
@@ -124,6 +135,14 @@ mkDirPromise(componentDir)
   )
   .then((template) => {
     logItemCompletion('Index file built and saved to disk.');
+    return template;
+  })
+  .then(template => (
+    // We also need the `index.js` file, which allows easy importing.
+    hasParentIndex && appendFilePromise(parentIndexPath, prettify(indexTemplate))
+  ))
+  .then(template => {
+    hasParentIndex && logItemCompletion('Added export to parent index file');
     return template;
   })
   .then((template) => {

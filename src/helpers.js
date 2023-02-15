@@ -150,3 +150,9 @@ module.exports.fileCreation = (componentName, prettify, templatePath, filePath, 
   writeFilePromise(filePath, skipPretty ? template : prettify(template)) 
 )
 };
+
+module.exports.logWarn = (warningMsg) => {
+  console.info('\n');
+  console.info(chalk.rgb(...colors.mediumGray)(warningMsg));
+  console.info('\n');
+}

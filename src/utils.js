@@ -54,3 +54,11 @@ module.exports.writeFilePromise = (fileLocation, fileContent) =>
 // to the code's directory.
 module.exports.readFilePromiseRelative = (fileLocation) =>
   module.exports.readFilePromise(path.join(__dirname, fileLocation));
+
+module.exports.appendFilePromise = (fileLocation, fileContent) => (
+  new Promise((resolve, reject) => {
+    fs.appendFile(fileLocation, fileContent, 'utf-8', (err) => {
+      err ? reject(err) : resolve();
+    });
+  })
+);
