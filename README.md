@@ -22,6 +22,7 @@ This project is a globally-installable CLI for adding new React components. It's
 - Uses [Prettier](https://github.com/prettier/prettier) to stylistically match the existing project.
 - Offers global config, which can be overridden on a project-by-project basis.
 - Colourful terminal output!
+- Update parent index file on component creation.
 
 <br />
 
