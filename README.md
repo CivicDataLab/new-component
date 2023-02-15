@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/joshwcomeau/new-component/blob/master/docs/logo@2x.png?raw=true" width="285" height="285" alt="new-component logo">
+  <img src="https://github.com/civicdatalab/new-component/blob/master/docs/logo@2x.png?raw=true" width="285" height="285" alt="new-component logo">
   <br>
   <a href="https://www.npmjs.org/package/new-component"><img src="https://img.shields.io/npm/v/new-component.svg?style=flat" alt="npm"></a>
 </p>
@@ -8,7 +8,7 @@
 
 ### Simple, customizable utility for adding new React components to your project.
 
-<img src="https://github.com/joshwcomeau/new-component/blob/master/docs/divider@2x.png?raw=true" width="888" height="100" role="presentation">
+<img src="https://github.com/civicdatalab/new-component/blob/master/docs/divider@2x.png?raw=true" width="888" height="100" role="presentation">
 
 Anyone else sick of writing the same component boilerplate, over and over?
 
@@ -31,27 +31,27 @@ Install via NPM:
 
 ```bash
 # Using Yarn:
-$ yarn global add new-component
+$ yarn global add git+https://github.com/CivicDataLab/new-component.git
 
 # or, using NPM
-$ npm i -g new-component
+$ npm i -g git+https://github.com/CivicDataLab/new-component.git
 ```
 
 `cd` into your project's directory, and try creating a new component:
 
 <p align="center">
-  <img src="https://github.com/joshwcomeau/new-component/blob/master/docs/demo.gif?raw=true" width="888" height="369" alt="demo of CLI functionality">
+  <img src="https://github.com/civicdatalab/new-component/blob/master/docs/demo.gif?raw=true" width="888" height="369" alt="demo of CLI functionality">
 </p>
 
 Your project will now have a new directory at `src/components/Button`. This directory has two files:
 
 ```jsx
-// `Button/index.js`
+// `Button/index.ts`
 export { default } from './Button';
 ```
 
 ```jsx
-// `Button/Button.js`
+// `Button/Button.tsx`
 import React, { Component } from 'react';
 
 class Button extends Component {
@@ -63,9 +63,7 @@ class Button extends Component {
 export default Button;
 ```
 
-> This structure might appear odd to you, with an `index.js` that points to a named file. I've found this to be an optimal way to set up components; the `index.js` allows you to `import` from the directory (eg. `import Button from 'components/Button'`), while having `Button.js` means that you're never lost in a sea of `index.js` files in your editor.
->
-> This structure is not currently configurable, but I'm happy to consider implementing alternatives!
+> This structure might appear odd to you, with an `index.ts` that points to a named file. I've found this to be an optimal way to set up components; the `index.ts` allows you to `import` from the directory (eg. `import Button from 'components/Button'`), while having `Button.tsx` means that you're never lost in a sea of `index.ts` files in your editor.
 
 <br />
 
@@ -85,13 +83,10 @@ The resulting values are merged, with command-line values overwriting local valu
 
 ### Type
 
-Control the type of component created:
+Type of component created:
 
 - `functional` for a stateless functional component (default).
-- `class` for a traditional Component class,
-- `pure-class` for a PureComponent class,
 
-Legacy `createClass` components are not supported.
 
 **Usage:**
 
@@ -162,5 +157,5 @@ To get started with development:
 
 - Check out this git repo locally, you will need to ensure you have Yarn installed globally.
 - In the folder run `yarn install`
-- Check that command runs `node ../new-component/src/index.js --help`
+- Check that command runs `node ../new-component/src/index.ts --help`
 - Alternatively you can set up a symlink override by running `npm link` then `new-component --help`. Note: this will override any globally installed version of this package.

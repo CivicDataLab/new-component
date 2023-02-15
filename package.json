@@ -1,14 +1,14 @@
 {
-  "name": "new-component",
+  "name": "new-component-opub",
   "version": "4.0.1",
   "description": "CLI for creating new React components",
-  "homepage": "https://github.com/joshwcomeau/new-component",
+  "homepage": "https://github.com/CivicDataLab/new-component",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joshwcomeau/new-component"
+    "url": "https://github.com/CivicDataLab/new-component"
   },
   "bugs": {
-    "url": "https://github.com/joshwcomeau/new-component/issues"
+    "url": "https://github.com/CivicDataLab/new-component/issues"
   },
   "main": "src/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "component",
     "boilerplate"
   ],
-  "author": "Joshua Comeau",
+  "author": "CivicDataLab",
   "license": "MIT",
   "bin": {
     "new-component": "./src/index.js"
