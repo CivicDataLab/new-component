@@ -1,19 +1,20 @@
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { COMPONENT_NAME } from './COMPONENT_NAME';
 
-export default {
+/**
+ * COMPONENT_NAME Description
+ *
+ * Reference: #
+ */
+const meta = {
   component: COMPONENT_NAME,
+} satisfies Meta<typeof COMPONENT_NAME>;
 
-  argTypes: {
-    children: {
-      control: 'text',
-      description: 'description text',
-    },
-  },
-} as Meta<typeof COMPONENT_NAME>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Primary = {
+export const Default: Story = {
   args: {
-    label: 'COMPONENT_NAME',
+    children: 'COMPONENT_NAME',
   },
 };
