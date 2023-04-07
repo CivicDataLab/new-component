@@ -67,7 +67,7 @@ const filePath = `${componentDir}/${componentName}.${program.extension}`;
 const stylePath = `${componentDir}/${componentName}.module.scss`;
 const testPath = `${componentDir}/${componentName}.test.${program.extension}`;
 const storyPath = `${componentDir}/${componentName}.stories.${program.extension}`;
-const indexPath = `${componentDir}/index.${program.extension}`;
+const indexPath = `${componentDir}/index.ts`;
 
 // Our index template is super straightforward, so we'll just inline it for now.
 const indexTemplate = prettify(`\
