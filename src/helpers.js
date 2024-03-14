@@ -33,8 +33,8 @@ module.exports.getConfig = () => {
 
   const defaults = {
     type: 'functional',
-    dir: 'src/components',
-    extension: 'js',
+    dir: 'packages/opub-ui/src/components',
+    extension: 'tsx',
   };
 
   const globalOverrides = requireOptional(
